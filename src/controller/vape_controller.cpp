@@ -1,11 +1,11 @@
 #include <controller/vape_controller.h>
 
-static int8_t power_mode = 0;
+static int8_t   power_mode = 0;
 static uint16_t voltage = 0;
 static uint16_t old_voltage = 0;
-static uint8_t charge_percent = 0;
-static uint8_t disable_counter = 0;
-static uint8_t lock = 0;    // lock vaping if low battery
+static uint8_t  charge_percent = 0;
+static uint8_t  disable_counter = 0;
+static uint8_t  lock = 0;    // lock vaping if low battery
 
 static uint8_t duty_modes[3] = {85, 170, 220}; //power modes duty cycle
 
@@ -54,7 +54,7 @@ static void update_voltage(void){
         timer_measure = millis();
     }
 #if DEBUG_ENABLED
-    Serial.println(voltage);
+    //Serial.println(voltage);
 #endif
     if(voltage < MIN_VOLT){
         charge_percent = 0;
@@ -70,7 +70,6 @@ void init_vape(){
     init_keypad();
     init_adc();
     init_pwm();
-
 #if DEBUG_ENABLED
     Serial.begin(9600);
 #endif

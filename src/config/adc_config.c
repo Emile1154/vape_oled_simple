@@ -4,9 +4,13 @@ uint32_t middle_val = 0;
 #define NUM_CONV 20
 
 void init_adc(void){
-    ADCSRA |= ( 1 << ADEN );
-    ADMUX  |= _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);   
-    ADMUX  &= ~(1 << ADLAR);
+    ADCSRA = 0;
+    ADMUX  = 0;
+
+    ADCSRA|= _BV(ADEN) | _BV(ADPS2) | _BV(ADPS1);
+    ADMUX |= _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);   
+    ADMUX &= ~_BV(REFS1);
+    ADMUX &= ~(1 << ADLAR);
 }
 
 uint16_t read_adc(){
